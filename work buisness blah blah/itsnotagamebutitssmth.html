@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movement ID | Verification</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0b1220, #172b4d);
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.card {
+    width: 100%;
+    max-width: 440px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 20px 50px #0005;
+    animation: appear 0.7s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    font-size: 29px;
+    font-weight: bold;
+    color: #60a5fa;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #cbd5e1;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.badge {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 22px;
+    padding: 8px 14px;
+    background: #14532d;
+    color: #86efac;
+    border: 1px solid #22c55e;
+    border-radius: 30px;
+    font-size: 12px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 17px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #e2e8f0;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 9px;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.25s;
+}
+
+input:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px #60a5fa25;
+}
+
+input[type="submit"] {
+    margin-top: 25px;
+    background: #22c55e;
+    color: #052e16;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+input[type="submit"]:hover {
+    background: #4ade80;
+    transform: translateY(-2px);
+}
+
+.note {
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 22px;
+}
+
+footer {
+    text-align: center;
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="logo">MOVEMENT ID</div>
+
+    <p class="subtitle">
+        Welcome to your Movement ID portal.
+        Enter your details below to continue.
+    </p>
+
+    <div class="badge">● ID REGISTRATION</div>
+
+    <h2>Verify Your Details</h2>
+
+    <form action="otherpage.html" method="get">
+
+        <label for="fname">First name</label>
+        <input type="text" id="fname" name="fname"
+               placeholder="Enter your first name" required>
+
+        <label for="lname">Last name</label>
+        <input type="text" id="lname" name="lname"
+               placeholder="Enter your last name" required>
+
+        <label for="pnum">Phone number</label>
+        <input type="tel" id="pnum" name="pnum"
+               placeholder="Enter your phone number" required>
+
+        <label for="id">ID card number</label>
+        <input type="text" id="id" name="id"
+               placeholder="Enter a test ID number" required>
+
+        <label for="ctry">Country</label>
+        <input type="text" id="ctry" name="ctry"
+               placeholder="Enter your country" required>
+
+        <input type="submit" value="Submit Details →">
+
+    </form>
+
+    <p class="note">
+        This is a demonstration website.
+        Do not enter real identity documents or sensitive personal information.
+    </p>
+
+    <footer>
+        Movement ID • Demonstration Portal
+    </footer>
+
+</div>
+
+</body>
+</html>

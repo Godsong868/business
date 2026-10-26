@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movement ID | Verification</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0b1220, #172b4d);
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 440px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 20px 50px #0005;
+            animation: appear 0.7s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 35px;
+            font-weight: bold;
+            color: #60a5fa;
+            margin-bottom: 10px;
+        }
+
+        .icon {
+            width: 85px;
+            height: 85px;
+            margin: 25px auto;
+            border-radius: 50%;
+            background: #14532d;
+            color: #4ade80;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            animation: pop 0.5s ease 0.3s both;
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .status {
+            display: inline-block;
+            background: #14532d;
+            color: #86efac;
+            border: 1px solid #22c55e;
+            padding: 8px 14px;
+            border-radius: 30px;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+
+        .details {
+            display: none;
+            background: #0f172a;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: left;
+            margin-top: 20px;
+            animation: appear 0.4s ease;
+        }
+
+        .details p {
+            color: #cbd5e1;
+            overflow-wrap: anywhere;
+        }
+
+        .details strong {
+            color: white;
+        }
+
+        button, .back {
+            display: block;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s;
+            text-decoration: none;
+        }
+
+        .primary {
+            background: #22c55e;
+            color: #052e16;
+        }
+
+        .primary:hover {
+            background: #4ade80;
+            transform: translateY(-2px);
+        }
+
+        .secondary {
+            background: #334155;
+            color: white;
+        }
+
+        .secondary:hover {
+            background: #475569;
+        }
+
+        .back {
+            background: transparent;
+            border: 1px solid #475569;
+            color: #cbd5e1;
+        }
+
+        .back:hover {
+            background: #334155;
+        }
+
+        footer {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+
+        #message {
+            color: #86efac;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="logo">MOVEMENT ID</div>
+
+    <div class="icon" id="successIcon">✓</div>
+
+    <h1 id="heading">Form Submitted!</h1>
+
+    <p class="description" id="description">
+        Your form has been received by this demonstration page.
+    </p>
+
+    <div class="status" id="status">
+        ● DEMO CONFIRMATION
+    </div>
+
+    <button class="primary" onclick="toggleDetails()">
+        View My Details
+    </button>
+
+    <div class="details" id="details">
+        <h3>Submitted Information</h3>
+        <p><strong>First name:</strong> <span id="first"></span></p>
+        <p><strong>Last name:</strong> <span id="last"></span></p>
+        <p><strong>Phone:</strong> <span id="phone"></span></p>
+        <p><strong>Country:</strong> <span id="country"></span></p>
+        <p><strong>ID card:</strong> <span id="identity"></span></p>
+    </div>
+
+    <button class="secondary" onclick="copyReference()">
+        Copy Reference Number
+    </button>
+
+    <p id="message"></p>
+
+    <a href="itsnotagamebutitssmth.html" class="back">← Return to Form</a>
+
+    <footer>
+        Movement ID • Demonstration Website
+        <br>
+        This page does not verify identities or store submissions.
+    </footer>
+
+</div>
+
+<script>
+    // Read the information submitted through the URL.
+    const params = new URLSearchParams(window.location.search);
+
+    function getField(name, fallback) {
+        return params.get(name) || fallback;
+    }
+
+    document.getElementById("first").textContent =
+        getField("fname", "Not provided");
+
+    document.getElementById("last").textContent =
+        getField("lname", "Not provided");
+
+    document.getElementById("phone").textContent =
+        getField("pnum", "Not provided");
+
+    document.getElementById("country").textContent =
+        getField("ctry", "Not provided");
+
+    // Do not display a full identity number.
+    const idNumber = params.get("id");
+
+    document.getElementById("identity").textContent =
+        idNumber
+            ? "••••" + idNumber.slice(-4)
+            : "Not provided";
+
+    // Generate a reference for this browser page.
+    const reference =
+        "MID-" + Math.random().toString(36).slice(2, 8).toUpperCase();
+
+    function toggleDetails() {
+        const details = document.getElementById("details");
+        const button = document.querySelector(".primary");
+
+        if (details.style.display === "block") {
+            details.style.display = "none";
+            button.textContent = "View My Details";
+        } else {
+            details.style.display = "block";
+            button.textContent = "Hide My Details";
+        }
+    }
+
+    async function copyReference() {
+        const message = document.getElementById("message");
+
+        try {
+            await navigator.clipboard.writeText(reference);
+            message.textContent = "Reference copied: " + reference;
+        } catch {
+            message.textContent = "Your demo reference is: " + reference;
+        }
+    }
+</script>
+
+</body>
+</html>
